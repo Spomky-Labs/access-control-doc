@@ -70,6 +70,29 @@ count($environment);                  // 2
 
 It is deliberately not silent about a missing key when a rule needs one. A rule that abstains because a key is absent fails open, and no entry point should be able to disable a rule by omission: read the key with `has()` and decide what its absence means, rather than letting `get()` hand you a default you did not think about.
 
+### The keys the component seeds
+
+Each entry point fills in what it knows, and **these four are the only names this component puts there**. Everything else in the bag is yours.
+
+| Constant | Key | Seeded by |
+|---|---|---|
+| `AccessEnvironment::REQUEST` | `request` | Every web entry point: the access policy listener, the URL rule listener, the `#[IsGranted]` bridge |
+| `AccessEnvironment::COMMAND` | `command` | The console entry point |
+| `AccessEnvironment::INPUT` | `input` | The console entry point |
+| `AccessEnvironment::OUTPUT` | `output` | The console entry point |
+
+`AccessEnvironment::SEEDED_KEYS` holds the four, so an application can tell them from its own.
+
+They are what a `When` condition names: `request.isMethod("POST")` on the web, `input.getOption("force")` on the console. Each entry point pins its own set with a test, because a key silently dropped or renamed is a guard that stops applying rather than a guard that breaks.
+
+### Why the bag stays open
+
+The keys are free on purpose, and this was arbitrated rather than left undecided.
+
+Nothing in the component ever reads a key: the environment is carried through to the expression voter, which publishes it as a variable, to the closure voter, and to the profiler panel. **Its consumers are all string-keyed**, so a PHP type would buy them nothing while costing the library its independence from HttpFoundation and Console, which today it does not require at all.
+
+The mistake typing would catch is already loud where it matters: an expression naming a variable nothing seeded raises at compile time, `Variable "actor" is not valid`. What remains silent is `$environment->get('typo')` in a voter of your own, and typing the four keys above would not have covered that either, your keys being yours.
+
 ## A decision is not a boolean
 
 `decide()` hands back an `AccessDecision`, not a `bool`. It carries the verdict, the reason, the votes that were cast and who cast them.

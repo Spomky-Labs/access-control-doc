@@ -34,7 +34,3 @@ That is what makes a refusal diagnosable six months later, and it is what the pr
 A guard that lets somebody through is the only unacceptable failure, and it is silent. Nothing in a test suite goes red, nothing in a log goes wrong; access rules simply stop applying.
 
 So the component is built to fail loudly instead. What the Symfony bridge cannot absorb raises at compile time rather than at runtime: two combining algorithms named at once, two sets of URL rules, two role hierarchies, contradictory settings, a template function Security would publish that we did not expect. What a reprise cannot do refuses out loud rather than answering `false`, because a refusal a template cannot tell from a real one is the same family of fault.
-
-## Status
-
-The whole API is marked `@experimental`. It may change in a minor release, and it will keep doing so until the migration paths out of Symfony Security are complete.

@@ -40,7 +40,3 @@ Installing the bundle changes nothing you can see. Your voters keep being consul
 * [What is Access Control?](the-project/the-project.md) if you want the shape of the thing first.
 * [Installation](the-project/installation.md) if you want to try it now.
 * [Vocabulary](access-control-in-a-nutshell/vocabulary.md) if a word here already means something else to you. It probably does: `subject` is the resource, not the actor.
-
-## Status
-
-The whole API is marked `@experimental`. It may change in a minor release, and it will keep doing so until the migration paths out of Symfony Security are complete.

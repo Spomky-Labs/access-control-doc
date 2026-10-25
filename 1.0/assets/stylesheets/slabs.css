@@ -321,16 +321,20 @@ body {
 
 /* ---------------------------------------------------------------- Layout (p. 31) */
 
-/* The content area, 1200 px at most: the reading column, 864 px at most, and 168 px beside it on each side,
-   which is where the navigation and the contents of the page go. */
+/* The navigation takes the width of the side band, 288 px: the 168 px the guidelines leave beside the
+   reading column broke a title in two on most pages. The contents of the page keep those 168 px, and the
+   reading column its 864 px. */
 .md-grid {
-  max-width: calc(var(--slabs-content-max) + 2 * var(--slabs-gutter));
+  max-width: calc(var(--slabs-side-band) + var(--slabs-reading-max) + 168px + 3 * var(--slabs-gutter));
 }
 
 @media screen and (min-width: 76.25em) {
-  .md-sidebar--primary,
+  .md-sidebar--primary {
+    width: var(--slabs-side-band);
+  }
+
   .md-sidebar--secondary {
-    width: calc((var(--slabs-content-max) - var(--slabs-reading-max)) / 2 + var(--slabs-gutter));
+    width: calc(168px + var(--slabs-gutter));
   }
 }
 
@@ -371,9 +375,20 @@ body {
   font-weight: 600;
 }
 
-.md-nav--primary .md-nav__link--active > .md-ellipsis,
-.md-nav--primary a.md-nav__link--active {
+/* The underline is drawn on the text of the link only: drawn on the link as well, it doubles. */
+.md-nav--primary .md-nav__link {
+  text-decoration: none;
+}
+
+.md-nav--primary .md-nav__link--active > .md-ellipsis {
   text-decoration: underline 2px var(--doc-rule-strong);
+  text-underline-offset: 0.35em;
+}
+
+/* Under the pointer, a link of the navigation behaves as a link of the text (p. 33): a 2 px orange
+   underline, on the current page as on the others. */
+.md-nav--primary a.md-nav__link:is(:hover, :focus-visible) > .md-ellipsis {
+  text-decoration: underline 2px var(--slabs-orange);
   text-underline-offset: 0.35em;
 }
 
@@ -447,16 +462,29 @@ body {
 }
 
 .md-nav--secondary .md-nav__link--active,
-.md-nav--secondary .md-nav__link:hover {
+.md-nav--secondary .md-nav__link:is(:hover, :focus-visible) {
   color: var(--doc-text);
+}
+
+.md-nav--secondary a.md-nav__link:is(:hover, :focus-visible) {
+  text-decoration: underline 2px var(--slabs-orange);
+  text-underline-offset: 0.35em;
 }
 
 /* ---------------------------------------------------------------- Reading (p. 34) */
 
+/* The body of a page reads as an article: 18 px, 16 px on a phone, line height 1.6. Interface text, the
+   navigation, the fields and the buttons, keeps its own sizes. */
 .md-typeset {
   color: var(--doc-text);
-  font-size: var(--slabs-body);
+  font-size: var(--slabs-body-reading);
   line-height: var(--slabs-lh-reading);
+}
+
+@media screen and (max-width: 640px) {
+  .md-typeset {
+    font-size: var(--slabs-body-reading-mobile);
+  }
 }
 
 .md-typeset :is(h1, h2, h3, h4) {
@@ -588,9 +616,14 @@ body {
   background-color: var(--doc-tint);
   border-radius: var(--slabs-radius-control);
   color: var(--doc-text);
-  font-size: calc(var(--slabs-code-size) / var(--slabs-body) * 1em);
+  font-size: var(--slabs-code-size);
   padding: 0.1em 0.35em;
   word-break: normal;
+}
+
+/* In a heading, inline code follows the size of the heading. */
+.md-typeset :is(h1, h2, h3, h4) code {
+  font-size: 0.85em;
 }
 
 /* A code block: Plex Mono 14 px on Anthracite, the radius of a card. */
@@ -776,7 +809,7 @@ body {
   border-radius: var(--slabs-radius-card);
   box-shadow: none;
   color: var(--slabs-anthracite);
-  font-size: var(--slabs-body);
+  font-size: inherit;
   margin: calc(var(--slabs-space-base) * 6) 0;
   padding: calc(var(--slabs-space-base) * 5) calc(var(--slabs-space-base) * 5) calc(var(--slabs-space-base) * 4);
   position: relative;
@@ -857,7 +890,7 @@ body {
   border-radius: 0;
   box-shadow: none;
   display: table;
-  font-size: var(--slabs-body);
+  font-size: inherit;
   width: 100%;
 }
 

@@ -1,42 +1,50 @@
-# Access Control: authorization for your PHP applications
+# The documentation of Access Control
 
-**Access Control** decides whether a requester is allowed to perform an action on a subject.
+The public documentation of [Access Control](https://github.com/Spomky-Labs/access-control-framework),
+authorization for PHP applications: the pure PHP component and the Symfony bundle.
 
-It is authorization on its own. Voters, combining algorithms, access policies declared as attributes, and decisions that say why they were reached: none of it needs an authentication stack to exist. There is no user, no token and no firewall in the vocabulary, and a requester is whatever your application says it is.
+Published with [MkDocs](https://www.mkdocs.org/) and
+[Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) on GitHub Pages:
+**<https://acf.spomky-labs.com/>**
 
-```php
-$decision = $accessControlManager->decide(new AccessRequest($requester, 'EDIT', $post));
+## Writing
 
-if (! $decision->isGranted()) {
-    throw new AccessDeniedException($decision->reason);
-}
+```bash
+make install   # the toolchain, in .venv, from requirements.txt
+make serve     # http://127.0.0.1:8000, rebuilt as you save
+make check     # the strict build continuous integration runs
 ```
 
-The same question, asked from a controller of a Symfony application:
+`make check` is the gate: a broken internal link, an anchor that does not exist, a page absent from the
+navigation or a navigation entry without a page fails the build.
 
-```php
-#[AccessPolicy('EDIT', new Argument('post'))]
-public function edit(Post $post): Response
-{
-    // ...
-}
-```
+## Where things are
 
-## Two packages
-
-| Package | What it is |
+| Path | What it is |
 |---|---|
-| `spomky-labs/access-control-lib` | The library, usable in any PHP application |
-| `spomky-labs/access-control-bundle` | The integration into the Symfony full-stack framework |
+| `mkdocs.yml` | The site: theme, extensions, plugins, and the whole navigation |
+| `docs/` | The pages, one directory per section of the navigation |
+| `docs/assets/stylesheets/theme.css` | The look. The tokens at the top of the file carry the colours, the borders and the widths |
+| `docs/overrides/` | Theme partials, when a page needs more than CSS |
+| `site-root/` | The root of the published site, copied to the root of the `gh-pages` branch: `CNAME`, and the `404.html` that sends the addresses of the former GitBook site to the latest version |
+| `requirements.txt` | The toolchain, pinned. Continuous integration installs exactly this |
+| `.github/workflows/check.yml` | The strict build, on every pull request |
+| `.github/workflows/pages.yml` | The publication: one version per branch, through mike |
+| `.github/workflows/default-branch.yml` | A new version branch becomes the default branch |
+| `docs/SUMMARY.md`, `.gitbook.yaml` | The GitBook space, until the domain points to GitHub Pages |
 
-Both are read-only subtree splits of [access-control-framework](https://github.com/spomky-labs/access-control-framework), where issues and pull requests belong.
+## One branch per version
 
-## Coming from Symfony Security
+A branch of this repository is a version of the packages: `1.0`, `1.1`, and so on. A push to one of them
+publishes it under its own name, and the newest one also carries the `latest` alias, which the root of the
+site redirects to.
 
-Installing the bundle changes nothing you can see. Your voters keep being consulted, `#[IsGranted]` is read, `is_granted()` answers in your templates, and the rules of your `security.yaml` are enforced. What changed is who decides. Moving to this component's own vocabulary is a second, separate migration you make at your own pace, and [The Two Migrations](migration/the-two-migrations.md) explains why confusing the two would cost you the adoption.
+```bash
+git switch -c 1.1 1.0          # from the version it continues
+# in mkdocs.yml, point edit_uri at the new branch
+git push -u origin 1.1         # publishes it, and moves "latest" and the default branch
+```
 
-## Where to start
+## Licence
 
-* [What is Access Control?](the-project/the-project.md) if you want the shape of the thing first.
-* [Installation](the-project/installation.md) if you want to try it now.
-* [Vocabulary](access-control-in-a-nutshell/vocabulary.md) if a word here already means something else to you. It probably does: `subject` is the resource, not the actor.
+MIT, as the packages it documents.

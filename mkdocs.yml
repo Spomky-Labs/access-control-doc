@@ -1,0 +1,192 @@
+site_name: Access Control
+site_description: Authorization for PHP applications. Voters, combining algorithms, access policies declared as attributes and decisions that say why they were reached.
+site_url: https://acf.spomky-labs.com/
+site_author: Spomky-Labs
+copyright: Released under the MIT licence
+repo_url: https://github.com/Spomky-Labs/access-control-framework
+repo_name: spomky-labs/access-control-framework
+edit_uri: https://github.com/Spomky-Labs/access-control-doc/edit/1.0/docs/
+
+docs_dir: docs
+site_dir: site
+
+# The GitBook table of contents. It stays while GitBook serves the domain, and the navigation below says the
+# same thing in the words of MkDocs.
+exclude_docs: |
+  SUMMARY.md
+
+theme:
+  name: material
+  custom_dir: docs/overrides
+  language: en
+  font:
+    text: Inter
+    code: JetBrains Mono
+  icon:
+    logo: material/shield-check-outline
+    repo: fontawesome/brands/github
+    edit: material/pencil-outline
+    annotation: material/plus-circle
+  favicon: assets/images/favicon.svg
+  palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Follow the system theme
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to the dark theme
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-night
+        name: Switch to the light theme
+  features:
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.tracking
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - navigation.footer
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+    - content.tooltips
+    - content.action.edit
+
+extra_css:
+  - assets/stylesheets/theme.css
+
+plugins:
+  - search
+  # Every external asset (the fonts the theme asks for) is downloaded at build time and
+  # served from this site. Nothing a reader loads reaches a third party.
+  - privacy
+  - git-revision-date-localized:
+      enable_creation_date: false
+      type: date
+      fallback_to_build_date: true
+  # The GitBook space published the pages of the bundle under the-symfony-bundle/, the directory is
+  # symfony-bundle/. Those addresses are linked from elsewhere and keep leading to their page.
+  - redirects:
+      redirect_maps:
+        the-symfony-bundle/installation.md: symfony-bundle/installation.md
+        the-symfony-bundle/configuration.md: symfony-bundle/configuration.md
+        the-symfony-bundle/controllers.md: symfony-bundle/controllers.md
+        the-symfony-bundle/url-rules.md: symfony-bundle/url-rules.md
+        the-symfony-bundle/templates.md: symfony-bundle/templates.md
+        the-symfony-bundle/console.md: symfony-bundle/console.md
+        the-symfony-bundle/workflow.md: symfony-bundle/workflow.md
+        the-symfony-bundle/profiler.md: symfony-bundle/profiler.md
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      title: On this page
+      permalink: true
+      permalink_title: Link to this section
+      toc_depth: 3
+  - pymdownx.betterem
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      # A PHP block of these pages starts without "<?php", which Pygments needs before it colours anything,
+      # and which GitBook never asked for.
+      extend_pygments_lang:
+        - name: php
+          lang: php
+          options:
+            startinline: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.snippets:
+      check_paths: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - pymdownx.tilde
+
+validation:
+  omitted_files: warn
+  absolute_links: warn
+  unrecognized_links: warn
+  anchors: warn
+  nav:
+    omitted_files: warn
+
+extra:
+  status:
+    draft: This page is a stub, the section it belongs to is not written yet
+    new: Added in this version
+  version:
+    provider: mike
+    alias: true
+    default: latest
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/Spomky-Labs/access-control-framework
+      name: Access Control on GitHub
+    - icon: fontawesome/brands/php
+      link: https://packagist.org/packages/spomky-labs/
+      name: The packages on Packagist
+
+nav:
+  - "Access Control: authorization for your PHP applications": README.md
+  - The project:
+      - "What is Access Control?": the-project/the-project.md
+      - "Installation": the-project/installation.md
+      - "Contributing": the-project/contributing.md
+  - Access Control In A Nutshell:
+      - "Vocabulary": access-control-in-a-nutshell/vocabulary.md
+      - "Voters": access-control-in-a-nutshell/voters.md
+      - "Combining Algorithms": access-control-in-a-nutshell/combining-algorithms.md
+      - "Requesters and Actors": access-control-in-a-nutshell/requesters.md
+  - Pure PHP:
+      - "The Manager": pure-php/the-manager.md
+      - "Access Policies": pure-php/access-policies.md
+      - "Testing": pure-php/testing.md
+  - The Symfony Bundle:
+      - "Installation": symfony-bundle/installation.md
+      - "Configuration": symfony-bundle/configuration.md
+      - "Controllers": symfony-bundle/controllers.md
+      - "URL Rules": symfony-bundle/url-rules.md
+      - "Templates": symfony-bundle/templates.md
+      - "Console Commands": symfony-bundle/console.md
+      - "Workflow Guards": symfony-bundle/workflow.md
+      - "The Profiler Panel": symfony-bundle/profiler.md
+  - Migration:
+      - "The Two Migrations": migration/the-two-migrations.md
+      - "Coming From Security": migration/from-security.md
+      - "Known Divergences": migration/known-divergences.md

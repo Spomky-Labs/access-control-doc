@@ -77,8 +77,18 @@ plugins:
       enable_creation_date: false
       type: date
       fallback_to_build_date: true
+  # The GitBook space published the pages of the bundle under the-symfony-bundle/, the directory is
+  # symfony-bundle/. Those addresses are linked from elsewhere and keep leading to their page.
   - redirects:
-      redirect_maps: {}
+      redirect_maps:
+        the-symfony-bundle/installation.md: symfony-bundle/installation.md
+        the-symfony-bundle/configuration.md: symfony-bundle/configuration.md
+        the-symfony-bundle/controllers.md: symfony-bundle/controllers.md
+        the-symfony-bundle/url-rules.md: symfony-bundle/url-rules.md
+        the-symfony-bundle/templates.md: symfony-bundle/templates.md
+        the-symfony-bundle/console.md: symfony-bundle/console.md
+        the-symfony-bundle/workflow.md: symfony-bundle/workflow.md
+        the-symfony-bundle/profiler.md: symfony-bundle/profiler.md
 
 markdown_extensions:
   - abbr

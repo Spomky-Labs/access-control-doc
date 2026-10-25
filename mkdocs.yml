@@ -111,6 +111,13 @@ markdown_extensions:
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.highlight:
       anchor_linenums: true
+      # A PHP block of these pages starts without "<?php", which Pygments needs before it colours anything,
+      # and which GitBook never asked for.
+      extend_pygments_lang:
+        - name: php
+          lang: php
+          options:
+            startinline: true
       line_spans: __span
       pygments_lang_class: true
   - pymdownx.inlinehilite

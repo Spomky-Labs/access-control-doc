@@ -1,4 +1,4 @@
-# Coming From Security
+# Coming from Security
 
 The mapping, piece by piece. Nothing here is required on day one: see [The Two Migrations](the-two-migrations.md).
 

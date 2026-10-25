@@ -1,4 +1,4 @@
-# Requesters and Actors
+# Requesters and actors
 
 The requester is who asks. It is typed `mixed`, and that is the point: this component decides without a token, without a user, and without a firewall.
 

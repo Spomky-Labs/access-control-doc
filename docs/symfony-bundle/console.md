@@ -1,4 +1,4 @@
-# Console Commands
+# Console commands
 
 A command is guarded the same way a controller is, by declaring the policy on it.
 

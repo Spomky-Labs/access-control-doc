@@ -1,4 +1,4 @@
-# Workflow Guards
+# Workflow guards
 
 A workflow transition guarded by an expression is answered by this component, so `is_granted()` in a guard reaches the same voters as everywhere else.
 

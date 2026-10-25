@@ -1,4 +1,4 @@
-# Combining Algorithms
+# Combining algorithms
 
 Several voters answer one question. The combining algorithm turns their outcomes into one decision.
 

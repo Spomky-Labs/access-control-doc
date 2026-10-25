@@ -1,4 +1,4 @@
-# URL Rules
+# URL rules
 
 Rules that guard parts of the site by path, host, port, IP, route, method or expression. They are matched in declaration order, the first match winning.
 

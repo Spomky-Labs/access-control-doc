@@ -1,4 +1,4 @@
-# The Manager
+# The manager
 
 `AccessControlManager` is the whole library in one object: it asks the voters, hands their outcomes to a combining algorithm, and returns a decision.
 

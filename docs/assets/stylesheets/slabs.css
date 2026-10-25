@@ -162,7 +162,8 @@ body {
   color: var(--doc-text);
 }
 
-/* The project mark, 32 px high, the colour version on light grounds and the reversed one on dark. */
+/* The logo, 32 px high: the project mark, or the Slabs logotype for a project that has none yet. The
+   colour version on light grounds, the reversed one on dark. */
 .md-header__button.md-logo {
   margin: 0 0 0 var(--slabs-gutter-mobile);
   padding: 0;
@@ -186,8 +187,9 @@ body {
   display: none !important;
 }
 
-/* The title of the page, after a rule, once the reader has scrolled past its heading. The mark already
-   names the project: on a screen wide enough to show it, the name is not written a second time. */
+/* The title of the page, after a rule, once the reader has scrolled past its heading. A project mark
+   already names the project: on a screen wide enough to show it, the name is not written a second time.
+   Beside the Slabs logotype, the name stays. */
 .md-header__title {
   font-size: var(--slabs-nav);
   font-weight: 600;
@@ -200,11 +202,11 @@ body {
 }
 
 @media screen and (min-width: 76.25em) {
-  .md-header__title:not(.md-header__title--active) .md-header__ellipsis {
+  .md-header:has(.sl-logo--mark) .md-header__title:not(.md-header__title--active) .md-header__ellipsis {
     border-left-color: transparent;
   }
 
-  .md-header__title .md-header__topic:first-child {
+  .md-header:has(.sl-logo--mark) .md-header__title .md-header__topic:first-child {
     visibility: hidden;
   }
 }

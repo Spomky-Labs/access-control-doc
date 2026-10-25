@@ -1,4 +1,4 @@
-# Access Control: authorization for your PHP applications
+# Access Control Framework
 
 **Access Control** decides whether a requester is allowed to perform an action on a subject.
 

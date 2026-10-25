@@ -24,7 +24,8 @@ navigation or a navigation entry without a page fails the build.
 |---|---|
 | `mkdocs.yml` | The site: theme, extensions, plugins, and the whole navigation |
 | `docs/` | The pages, one directory per section of the navigation |
-| `docs/assets/stylesheets/theme.css` | The look. The tokens at the top of the file carry the colours, the borders and the widths |
+| `docs/assets/stylesheets/` | The look: `slabs-tokens.css`, copied as it is from the Slabs design kit, and `slabs.css`, which applies the guidelines to the theme |
+| `docs/assets/brand/`, `docs/assets/fonts/` | The logotype, the signature, the favicons and the share image of the design kit, and its typefaces (SIL Open Font License) |
 | `docs/overrides/` | Theme partials, when a page needs more than CSS |
 | `site-root/` | The root of the published site, copied to the root of the `gh-pages` branch: `CNAME`, and the `404.html` that sends the addresses of the former GitBook site to the latest version |
 | `requirements.txt` | The toolchain, pinned. Continuous integration installs exactly this |

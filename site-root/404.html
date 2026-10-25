@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Page not found · Access Control</title>
+  <script>
+    // GitHub Pages answers every missing path of the domain with this page. A path that does not start with
+    // a published version is an address of the former GitBook site, which had no version in its URLs: it
+    // is sent to the same page of the latest version. A path inside a version that does not exist stays
+    // here and says so.
+    //
+    // A GitBook variant served under its own prefix ("/v4.5/…") is listed in VARIANTS, with the version it
+    // became. Access Control had a single variant, served at the root.
+    (function () {
+      var VARIANTS = {};
+      var path = location.pathname.replace(/\/+$/, '');
+      var first = path.split('/')[1] || '';
+
+      function go(target) {
+        location.replace(target + location.search + location.hash);
+      }
+
+      fetch('/versions.json')
+        .then(function (response) { return response.ok ? response.json() : []; })
+        .catch(function () { return []; })
+        .then(function (versions) {
+          var published = ['latest'];
+          versions.forEach(function (v) { published.push(v.version); published = published.concat(v.aliases || []); });
+
+          if (published.indexOf(first) !== -1) {
+            document.documentElement.className = 'missing';
+            return;
+          }
+          if (Object.prototype.hasOwnProperty.call(VARIANTS, first)) {
+            var rest = path.slice(first.length + 1);
+            return go('/' + VARIANTS[first] + rest + '/');
+          }
+          go('/latest' + path + '/');
+        });
+    })();
+  </script>
+  <style>
+    :root { color-scheme: light dark; --fg: #1a1d21; --muted: #5c6269; --accent: #4b48b5; --bg: #ffffff; }
+    @media (prefers-color-scheme: dark) { :root { --fg: #e7e7ee; --muted: #a3a5b0; --accent: #b4b2ff; --bg: #16171c; } }
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: var(--bg); color: var(--fg);
+           font: 16px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif; }
+    main { max-width: 32rem; padding: 0 16px; }
+    p { color: var(--muted); }
+    a { color: var(--accent); }
+    .found { display: none; }
+    html.missing .found { display: block; }
+    html.missing .moving { display: none; }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="moving">Looking for this page in the latest version…</p>
+    <div class="found">
+      <h1>Page not found</h1>
+      <p>This page does not exist in this version of the documentation.</p>
+      <p><a href="/">Go to the home page of the latest version</a></p>
+    </div>
+  </main>
+</body>
+</html>

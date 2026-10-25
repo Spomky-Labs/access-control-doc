@@ -10,11 +10,6 @@ edit_uri: https://github.com/Spomky-Labs/access-control-doc/edit/1.0/docs/
 docs_dir: docs
 site_dir: site
 
-# The GitBook table of contents. It stays while GitBook serves the domain, and the navigation below says the
-# same thing in the words of MkDocs.
-exclude_docs: |
-  SUMMARY.md
-
 theme:
   name: material
   custom_dir: docs/overrides

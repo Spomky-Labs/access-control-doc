@@ -31,7 +31,6 @@ navigation or a navigation entry without a page fails the build.
 | `.github/workflows/check.yml` | The strict build, on every pull request |
 | `.github/workflows/pages.yml` | The publication: one version per branch, through mike |
 | `.github/workflows/default-branch.yml` | A new version branch becomes the default branch |
-| `docs/SUMMARY.md`, `.gitbook.yaml` | The GitBook space, until the domain points to GitHub Pages |
 
 ## One branch per version
 

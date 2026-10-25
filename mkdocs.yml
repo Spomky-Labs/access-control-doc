@@ -155,6 +155,8 @@ extra:
   slabs:
     website: https://spomky-labs.com/
     links:
+      - name: All documentation
+        link: https://docs.spomky-labs.com/
       - name: Access Control on GitHub
         link: https://github.com/Spomky-Labs/access-control-framework
       - name: Packagist
@@ -164,13 +166,15 @@ extra:
       - name: Sponsor
         link: https://github.com/sponsors/Spomky
     legal: SPOMKY-LABS · Florent Morselli EI
+    # The legal notice, the privacy policy and the contact page are shared by every documentation site,
+    # on the central one.
     legal_links:
       - name: Legal notice
-        link: https://spomky-labs.com/mentions-legales/
+        link: https://docs.spomky-labs.com/legal-notice/
       - name: Privacy
-        link: https://spomky-labs.com/politique-de-confidentialite/
+        link: https://docs.spomky-labs.com/privacy/
       - name: Contact
-        link: https://spomky-labs.com/contact/
+        link: https://docs.spomky-labs.com/contact/
 
 # The title of each page is its first heading.
 nav:

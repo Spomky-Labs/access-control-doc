@@ -1,4 +1,4 @@
-# Access Policies
+# Access policies
 
 An access policy is a question declared where it applies, as an attribute, rather than asked in the body of a method.
 

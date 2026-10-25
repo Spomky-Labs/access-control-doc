@@ -1,4 +1,4 @@
-# Known Divergences
+# Known divergences
 
 Everything here is deliberate and measured. Nothing on this page is a bug, and nothing is expected to change quietly.
 

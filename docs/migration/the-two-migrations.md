@@ -1,4 +1,4 @@
-# The Two Migrations
+# The two migrations
 
 There are two, and confusing them would cost you the adoption. One is free and happens on day one. The other is yours to make, at your own pace, or never.
 

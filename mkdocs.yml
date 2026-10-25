@@ -2,7 +2,6 @@ site_name: Access Control
 site_description: Authorization for PHP applications. Voters, combining algorithms, access policies declared as attributes and decisions that say why they were reached.
 site_url: https://acf.spomky-labs.com/
 site_author: Spomky-Labs
-copyright: Released under the MIT licence
 repo_url: https://github.com/Spomky-Labs/access-control-framework
 repo_name: spomky-labs/access-control-framework
 edit_uri: https://github.com/Spomky-Labs/access-control-doc/edit/1.0/docs/
@@ -14,15 +13,14 @@ theme:
   name: material
   custom_dir: docs/overrides
   language: en
-  font:
-    text: Inter
-    code: JetBrains Mono
+  # Space Grotesk and IBM Plex Mono are served from assets/fonts, declared in slabs.css: the theme loads
+  # no font of its own.
+  font: false
   icon:
-    logo: material/shield-check-outline
     repo: fontawesome/brands/github
     edit: material/pencil-outline
     annotation: material/plus-circle
-  favicon: assets/images/favicon.svg
+  favicon: assets/brand/favicon.svg
   palette:
     - media: "(prefers-color-scheme)"
       toggle:
@@ -60,13 +58,15 @@ theme:
     - content.tooltips
     - content.action.edit
 
+# The tokens of the Slabs design kit, as they are, then the rules that apply them.
 extra_css:
-  - assets/stylesheets/theme.css
+  - assets/stylesheets/slabs-tokens.css
+  - assets/stylesheets/slabs.css
 
 plugins:
   - search
-  # Every external asset (the fonts the theme asks for) is downloaded at build time and
-  # served from this site. Nothing a reader loads reaches a third party.
+  # Every asset is served from this site. Should a page ever reference an external one, it is downloaded
+  # at build time: nothing a reader loads reaches a third party.
   - privacy
   - git-revision-date-localized:
       enable_creation_date: false
@@ -114,6 +114,8 @@ markdown_extensions:
           options:
             startinline: true
       line_spans: __span
+      # The number of a line is written at the start of the line itself, so it cannot drift from it.
+      linenums_style: pymdownx-inline
       pygments_lang_class: true
   - pymdownx.inlinehilite
   - pymdownx.keys
@@ -149,39 +151,53 @@ extra:
     provider: mike
     alias: true
     default: latest
-  social:
-    - icon: fontawesome/brands/github
-      link: https://github.com/Spomky-Labs/access-control-framework
-      name: Access Control on GitHub
-    - icon: fontawesome/brands/php
-      link: https://packagist.org/packages/spomky-labs/
-      name: The packages on Packagist
+  # The footer of the Slabs guidelines (p. 31): links in Calcaire, then the legal line in Béton.
+  slabs:
+    website: https://spomky-labs.com/
+    links:
+      - name: Access Control on GitHub
+        link: https://github.com/Spomky-Labs/access-control-framework
+      - name: Packagist
+        link: https://packagist.org/packages/spomky-labs/
+      - name: Security
+        link: https://github.com/Spomky-Labs/access-control-framework/security/policy
+      - name: Sponsor
+        link: https://github.com/sponsors/Spomky
+    legal: SPOMKY-LABS · Florent Morselli EI
+    legal_links:
+      - name: Legal notice
+        link: https://spomky-labs.com/mentions-legales/
+      - name: Privacy
+        link: https://spomky-labs.com/politique-de-confidentialite/
+      - name: Contact
+        link: https://spomky-labs.com/contact/
 
+# The title of each page is its first heading.
 nav:
-  - "Access Control: authorization for your PHP applications": README.md
+  - README.md
   - The project:
-      - "What is Access Control?": the-project/the-project.md
-      - "Installation": the-project/installation.md
-      - "Contributing": the-project/contributing.md
-  - Access Control In A Nutshell:
-      - "Vocabulary": access-control-in-a-nutshell/vocabulary.md
-      - "Voters": access-control-in-a-nutshell/voters.md
-      - "Combining Algorithms": access-control-in-a-nutshell/combining-algorithms.md
-      - "Requesters and Actors": access-control-in-a-nutshell/requesters.md
+      - the-project/the-project.md
+      - the-project/installation.md
+      - the-project/contributing.md
+  - Access Control in a nutshell:
+      - access-control-in-a-nutshell/vocabulary.md
+      - access-control-in-a-nutshell/voters.md
+      - access-control-in-a-nutshell/combining-algorithms.md
+      - access-control-in-a-nutshell/requesters.md
   - Pure PHP:
-      - "The Manager": pure-php/the-manager.md
-      - "Access Policies": pure-php/access-policies.md
-      - "Testing": pure-php/testing.md
-  - The Symfony Bundle:
-      - "Installation": symfony-bundle/installation.md
-      - "Configuration": symfony-bundle/configuration.md
-      - "Controllers": symfony-bundle/controllers.md
-      - "URL Rules": symfony-bundle/url-rules.md
-      - "Templates": symfony-bundle/templates.md
-      - "Console Commands": symfony-bundle/console.md
-      - "Workflow Guards": symfony-bundle/workflow.md
-      - "The Profiler Panel": symfony-bundle/profiler.md
+      - pure-php/the-manager.md
+      - pure-php/access-policies.md
+      - pure-php/testing.md
+  - The Symfony bundle:
+      - symfony-bundle/installation.md
+      - symfony-bundle/configuration.md
+      - symfony-bundle/controllers.md
+      - symfony-bundle/url-rules.md
+      - symfony-bundle/templates.md
+      - symfony-bundle/console.md
+      - symfony-bundle/workflow.md
+      - symfony-bundle/profiler.md
   - Migration:
-      - "The Two Migrations": migration/the-two-migrations.md
-      - "Coming From Security": migration/from-security.md
-      - "Known Divergences": migration/known-divergences.md
+      - migration/the-two-migrations.md
+      - migration/from-security.md
+      - migration/known-divergences.md

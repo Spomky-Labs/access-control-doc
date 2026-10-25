@@ -1,4 +1,4 @@
-# The Profiler Panel
+# The profiler panel
 
 With `symfony/web-profiler-bundle` installed, an **Access Control** panel appears in the toolbar and shows every question the request asked.
 

@@ -460,10 +460,18 @@ body {
 
 /* ---------------------------------------------------------------- Reading (p. 34) */
 
+/* The body of a page reads as an article: 18 px, 16 px on a phone, line height 1.6. Interface text, the
+   navigation, the fields and the buttons, keeps its own sizes. */
 .md-typeset {
   color: var(--doc-text);
-  font-size: var(--slabs-body);
+  font-size: var(--slabs-body-reading);
   line-height: var(--slabs-lh-reading);
+}
+
+@media screen and (max-width: 640px) {
+  .md-typeset {
+    font-size: var(--slabs-body-reading-mobile);
+  }
 }
 
 .md-typeset :is(h1, h2, h3, h4) {
@@ -595,9 +603,14 @@ body {
   background-color: var(--doc-tint);
   border-radius: var(--slabs-radius-control);
   color: var(--doc-text);
-  font-size: calc(var(--slabs-code-size) / var(--slabs-body) * 1em);
+  font-size: var(--slabs-code-size);
   padding: 0.1em 0.35em;
   word-break: normal;
+}
+
+/* In a heading, inline code follows the size of the heading. */
+.md-typeset :is(h1, h2, h3, h4) code {
+  font-size: 0.85em;
 }
 
 /* A code block: Plex Mono 14 px on Anthracite, the radius of a card. */
@@ -783,7 +796,7 @@ body {
   border-radius: var(--slabs-radius-card);
   box-shadow: none;
   color: var(--slabs-anthracite);
-  font-size: var(--slabs-body);
+  font-size: inherit;
   margin: calc(var(--slabs-space-base) * 6) 0;
   padding: calc(var(--slabs-space-base) * 5) calc(var(--slabs-space-base) * 5) calc(var(--slabs-space-base) * 4);
   position: relative;
@@ -864,7 +877,7 @@ body {
   border-radius: 0;
   box-shadow: none;
   display: table;
-  font-size: var(--slabs-body);
+  font-size: inherit;
   width: 100%;
 }
 

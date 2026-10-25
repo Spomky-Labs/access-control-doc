@@ -162,7 +162,7 @@ body {
   color: var(--doc-text);
 }
 
-/* The logotype, 32 px high, the colour version on light grounds and the reversed one on dark. */
+/* The project mark, 32 px high, the colour version on light grounds and the reversed one on dark. */
 .md-header__button.md-logo {
   margin: 0 0 0 var(--slabs-gutter-mobile);
   padding: 0;
@@ -175,8 +175,10 @@ body {
   width: auto;
 }
 
+/* In the drawer of a narrow screen, the mark takes the width of the drawer. */
 .md-nav__button.md-logo .sl-logo {
-  height: var(--slabs-header-logo);
+  height: auto;
+  max-width: 100%;
 }
 
 [data-md-color-scheme="default"] .sl-logo--dark,
@@ -184,7 +186,8 @@ body {
   display: none !important;
 }
 
-/* The project name, after a rule, the way the guidelines set it beside the logotype (p. 30). */
+/* The title of the page, after a rule, once the reader has scrolled past its heading. The mark already
+   names the project: on a screen wide enough to show it, the name is not written a second time. */
 .md-header__title {
   font-size: var(--slabs-nav);
   font-weight: 600;
@@ -194,6 +197,16 @@ body {
 .md-header__title .md-header__ellipsis {
   border-left: 1px solid var(--doc-rule);
   padding-left: var(--slabs-gutter);
+}
+
+@media screen and (min-width: 76.25em) {
+  .md-header__title:not(.md-header__title--active) .md-header__ellipsis {
+    border-left-color: transparent;
+  }
+
+  .md-header__title .md-header__topic:first-child {
+    visibility: hidden;
+  }
 }
 
 .md-header__button,

@@ -1,4 +1,4 @@
-site_name: Access Control
+site_name: Access Control Framework
 site_description: Authorization for PHP applications. Voters, combining algorithms, access policies declared as attributes and decisions that say why they were reached.
 site_url: https://acf.spomky-labs.com/
 site_author: Spomky-Labs
@@ -157,7 +157,7 @@ extra:
     links:
       - name: All documentation
         link: https://docs.spomky-labs.com/
-      - name: Access Control on GitHub
+      - name: Access Control Framework on GitHub
         link: https://github.com/Spomky-Labs/access-control-framework
       - name: Packagist
         link: https://packagist.org/packages/spomky-labs/
